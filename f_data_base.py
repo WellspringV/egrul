@@ -46,7 +46,7 @@ class PostgresRepository(BaseRepository):
     def get_db_credentials() -> dict:
         db_user = os.getenv('DB_USER')
         db_pass = os.getenv('DB_PASS')
-        db_host = os.getenv('DB_HOST', 'localhost')  
+        db_host = os.getenv('DB_HOST', 'database')  
         db_name = os.getenv('DB_NAME', 'postgres') 
 
         if not db_user or not db_pass:

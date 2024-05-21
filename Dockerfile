@@ -1,9 +1,11 @@
-FROM python:3.12-slim-buster
+FROM python:3.12
+
+RUN apt-get update && apt-get install -y wget curl
 
 WORKDIR /app
 
-COPY..
+COPY ./ /app
 
-RUN pip install -r requirements.txt
+RUN python -m pip install --upgrade pip && pip install -r requirements.txt
 
-CMD ["python", "main.py"]
+ENTRYPOINT ["python", "main.py"]
