@@ -1,0 +1,5 @@
+venv
+mylog.log
+__pycache__
+*.zip
+
