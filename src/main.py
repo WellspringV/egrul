@@ -108,7 +108,7 @@ def main():
 
         if os.path.exists(TARGET_FILE) and os.path.getsize(TARGET_FILE) == TARGET_SIZE:
             
-            print("Начата обработка архива")
+            print("\nНачата обработка архива")
             g = smart_unzip(TARGET_FILE)
             for id, item in enumerate(g):
                 read_write_and_drop(item, (FIRST_FILTER_PARAM, HOME_REGIONS))
