@@ -74,12 +74,16 @@ def main():
     TARGET_SIZE = DownloadManager(URL)._get_origin_size()
     total, user, free = shutil.disk_usage('/')
 
-    if free < TARGET_SIZE:
-        print(f'На диске недостаточно места, небоходимо {TARGET_SIZE / (1024 ** 3)}GB, доступно {free / (1024 ** 3)}GB')
-        return
+
     
     if not check_con(db):
         'Не удалось подключиться к БД. Работа скрипта будет прекращена.'
+        return
+
+    if not os.path.exists(TARGET_FILE):
+        if free < TARGET_SIZE:
+            print(f'На диске недостаточно места, небоходимо {TARGET_SIZE / (1024 ** 3)}GB, доступно {free / (1024 ** 3)}GB')
+            return
 
     try:
         if os.path.exists(TARGET_FILE):
