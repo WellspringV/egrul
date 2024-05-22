@@ -13,15 +13,15 @@
 
 Копируем репозиторий
 ```shell
-git clone git@github.com:WellspringV/egrul.git
-cd egrul/
+git clone git@github.com:WellspringV/egrul.git \
+cd egrul/ \
 docker build -t egrul .
 ```
 
 
 После сборки образа создаем кастомную сеть и volume
 ```shell
-docker network create back_net
+docker network create back_net \
 docker volume create postgres_volume
 ```
 
