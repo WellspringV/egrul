@@ -1,8 +1,7 @@
 venv
 mylog.log
 __pycache__
-logs
-tmp
+*.log
 *.pyc
-*.zip
+*.zip*
 
