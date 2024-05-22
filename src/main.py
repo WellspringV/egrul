@@ -76,6 +76,7 @@ def main():
 
     if free < TARGET_SIZE:
         print(f'На диске недостаточно места, небоходимо {TARGET_SIZE / (1024 ** 3)} GB')
+        return
 
     try:
         if os.path.exists(TARGET_FILE):
