@@ -23,19 +23,18 @@ def smart_unzip(json_archive):
             yield zip_ref.extract(file)
 
 
-def read_and_drop(json_gen, filters):
+def read_write_and_drop(json, filters):
     first_filter_param, second_filter_param = filters
     try:
-        json_file = next(json_gen)
-
-        res = complex_filter(json_file, first_filter_param, second_filter_param)
+        res = complex_filter(json, first_filter_param, second_filter_param)
         if res:
-            load(res)
+            load(db, res)
+            print('Part loaded')
     except Exception as e:
         print(e)
     finally:
-        if os.path.exists(json_file):
-            os.remove(json_file)
+        if os.path.exists(json):
+            os.remove(json)
 
 
 def interactive(question: str) -> bool:
@@ -65,12 +64,9 @@ def download_solition(solution: bool, url: str) -> None:
 def main():
 
     URL = "https://ofdata.ru/open-data/download/egrul.json.zip"
-    TARGET_FILE = "egrul.json.zip"
+    TARGET_FILE = "../egrul.json.zip"
     FIRST_FILTER_PARAM = ("КодОКВЭД", ["62."])
-    HOME_REGIONS = (
-        "КодРегион",
-        ["10", "11", "29", "35", "39", "47", "51", "53", "60", "78", "83"],
-    )
+    HOME_REGIONS = ("КодРегион", ["10", "11", "29", "35", "39", "47", "51", "53", "60", "78", "83"])
     TARGET_SIZE = DownloadManager(URL)._get_origin_size()
     total, user, free = shutil.disk_usage('/')
 
@@ -114,7 +110,8 @@ def main():
         if os.path.exists(TARGET_FILE) and os.path.getsize(TARGET_FILE) == TARGET_SIZE:
             print("Начата обработка архива")
             g = smart_unzip(TARGET_FILE)
-            read_and_drop(g, (FIRST_FILTER_PARAM, HOME_REGIONS))
+            for item in g:
+                read_write_and_drop(item, (FIRST_FILTER_PARAM, HOME_REGIONS))
         else:
             print("Попробуйте повторить загрузку файла")
 
