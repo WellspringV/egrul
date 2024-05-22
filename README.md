@@ -34,8 +34,9 @@ docker run --rm -d \
   -e POSTGRES_DB=postgres \
   -v postgres_volume:/var/lib/postgresql/data \
   postgres:14
+```
 
-
+```shell
 docker run --rm \
   -it \
   --name back \
