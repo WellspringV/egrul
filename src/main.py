@@ -1,6 +1,7 @@
 import sys
 import os
 import zipfile
+import shutil
 
 
 from repository import load
@@ -71,6 +72,10 @@ def main():
         ["10", "11", "29", "35", "39", "47", "51", "53", "60", "78", "83"],
     )
     TARGET_SIZE = DownloadManager(URL)._get_origin_size()
+    total, user, free = shutil.disk_usage('/')
+
+    if free < TARGET_SIZE:
+        print(f'На диске недостаточно места, небоходимо {TARGET_SIZE / (1024 ** 3)} GB')
 
     try:
         if os.path.exists(TARGET_FILE):

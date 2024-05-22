@@ -87,11 +87,9 @@ class DownloadManager:
                     for part in rs.iter_content(1024):
                         file.write(part)
             else:
-                return
-        except requests.exceptions.IncompleteRead as e:
-            logging.error(f"Ошибка чтения: {e}. Попытка повторения...")
+                return            
         except Exception as ex:
-            logging.error(ex)
+            logging.error(f"Ошибка чтения: {ex}. Попытка повторения...")
             return
         
 

@@ -22,11 +22,11 @@ db = PostgresqlDatabase(**credentials)
 
 
 @contextmanager
-def DatabaseContextManager(database: PostgresqlDatabase):
+def DatabaseContextManager(session: PostgresqlDatabase):
     try:
-        yield database
+        yield session
     finally:
-        database.close()
+        session.close()
 
 
 class UL(Model):
