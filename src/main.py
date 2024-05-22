@@ -75,7 +75,7 @@ def main():
     total, user, free = shutil.disk_usage('/')
 
     if free < TARGET_SIZE:
-        print(f'На диске недостаточно места, небоходимо {TARGET_SIZE / (1024 ** 3)} GB')
+        print(f'На диске недостаточно места, небоходимо {TARGET_SIZE / (1024 ** 3)}GB, доступно {free / (1024 ** 3)}GB')
         return
 
     try:
