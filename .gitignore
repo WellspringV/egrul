@@ -1,5 +1,8 @@
 venv
 mylog.log
 __pycache__
+logs
+tmp
+*.pyc
 *.zip
 
