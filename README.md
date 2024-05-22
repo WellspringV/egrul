@@ -16,7 +16,11 @@ cd egrul/
 
 docker build -t egrul .
 
-После сборки образа создаем общую сеть docker network create back_net
+
+После сборки образа создаем кастомную сеть и volume
+docker network create back_net
+docker volume create postgres_volume
+
 и запускаем 2 контейнера.
 ```shell
 docker run --rm -d \
