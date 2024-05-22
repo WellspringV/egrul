@@ -107,12 +107,15 @@ def main():
     except Exception as e:
         print(f"Во время работы скачивания файла возникло исключение {e}")
     else:
+        print('ФАЙЛ СКАЧАН проверяем на равенстко размеров')
         if os.path.exists(TARGET_FILE) and os.path.getsize(TARGET_FILE) == TARGET_SIZE:
             print("Начата обработка архива")
             g = smart_unzip(TARGET_FILE)
             for item in g:
                 read_write_and_drop(item, (FIRST_FILTER_PARAM, HOME_REGIONS))
         else:
+            print('Условие проверки не пройдено')
+            print(f"{os.path.exists(TARGET_FILE)=}", f"{os.path.getsize(TARGET_FILE)}", f"{TARGET_SIZE}")
             print("Попробуйте повторить загрузку файла")
 
 

@@ -54,7 +54,7 @@ logger_config = {
         },
         'file': {
             'class': 'logging.FileHandler',
-            'filename': 'src/logs/debug.log',
+            'filename': 'debug.log',
             'level': 'DEBUG',
             'formatter': 'debug_format',
             'filters': ['debug_filter']
