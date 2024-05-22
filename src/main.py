@@ -29,7 +29,6 @@ def read_write_and_drop(json, filters):
         res = complex_filter(json, first_filter_param, second_filter_param)
         if res:
             load(db, res)
-            print('Part loaded')
     except Exception as e:
         print(e)
     finally:
@@ -89,8 +88,7 @@ def main():
             if current_size != TARGET_SIZE:
                 solution = interactive(
                     "Размер файла не соответствует ожидаемому, требуется перезаписать? (Yes/No)"
-                )
-                
+                )                
                 download_solition(solution, URL)
             else:
                 solution = interactive(
@@ -109,10 +107,14 @@ def main():
     else:
 
         if os.path.exists(TARGET_FILE) and os.path.getsize(TARGET_FILE) == TARGET_SIZE:
+            
             print("Начата обработка архива")
             g = smart_unzip(TARGET_FILE)
-            for item in g:
+            for id, item in enumerate(g):
                 read_write_and_drop(item, (FIRST_FILTER_PARAM, HOME_REGIONS))
+                print(f'Part {id} handled', end='\r')
+            os.remove(TARGET_FILE)
+            print('Работа программы завершена, отфильтрованные данные записаны в БД')
         else:
             print("Попробуйте повторить загрузку файла")
 
