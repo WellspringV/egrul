@@ -77,6 +77,6 @@ def complex_filter(filename, first_param, second_param):
 
 
 if __name__ == "__main__":
-    res = complex_filter('00499.json', ('КодОКВЭД', ['62.']), ("НаимРегион", ['Калуж']))
+    pass
 
 

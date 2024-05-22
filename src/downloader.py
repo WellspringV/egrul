@@ -65,7 +65,7 @@ class DownloadManager:
         try:
             response_headers = self._get_response_headers()
         except Exception as ex:
-            logging.warning(ex)
+            logging.error(ex)
         else:
             self.response_headers = response_headers
             self.origin_file_size = self._get_origin_size()
@@ -79,7 +79,7 @@ class DownloadManager:
             "YaBrowser/22.11.3.838 Yowser/2.5 Safari/537.36",
             'Range': f'bytes={start}-{end}' 
         }
-        logging.info(f'In progress {start} of {self.origin_file_size}')
+        
         try:
             rs = self.session.get(url=url, headers=headers, stream=True, timeout=timeout)
             if 200 <= rs.status_code <= 299:                
@@ -89,9 +89,9 @@ class DownloadManager:
             else:
                 return
         except requests.exceptions.IncompleteRead as e:
-            logging.warning(f"Ошибка чтения: {e}. Попытка повторения...")
+            logging.error(f"Ошибка чтения: {e}. Попытка повторения...")
         except Exception as ex:
-            logging.warning(ex)
+            logging.error(ex)
             return
         
 
