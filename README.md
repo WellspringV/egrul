@@ -10,7 +10,9 @@
 
 ## Установка 
 git clone git@github.com:WellspringV/egrul.git
+
 cd egrul/
+
 docker build -t egrul .
 
 После сборки образа создаем общую сеть docker network create back_net
