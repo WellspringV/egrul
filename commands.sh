@@ -21,4 +21,8 @@ docker run --rm -d \
   -e DB_NAME=postgres \
   custom_cli:1
 
+<<<<<<< HEAD
 # docker exec -it database psql --username  postgres --dbname postgres
+=======
+# docker exec -it database psql --username  postgres --dbname postgres
+>>>>>>> 0582a6e1e6b4e32ea56585066b998ee3d07e4f54
