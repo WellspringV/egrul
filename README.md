@@ -16,7 +16,7 @@
 git clone git@github.com:WellspringV/egrul.git
 cd egrul/
 docker build -t egrul .
-```shell
+```
 
 
 После сборки образа создаем кастомную сеть и volume
