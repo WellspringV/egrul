@@ -4,7 +4,7 @@ import zipfile
 import shutil
 
 
-from repository import load
+from repository import db, check_con, load
 from downloader import download_data, DownloadManager
 from wget_downloader import wget_data
 from json_parser import *
@@ -77,6 +77,9 @@ def main():
     if free < TARGET_SIZE:
         print(f'На диске недостаточно места, небоходимо {TARGET_SIZE / (1024 ** 3)}GB, доступно {free / (1024 ** 3)}GB')
         return
+    
+    if not check_con(db):
+        'Не удалось подключиться к БД. Работа скрипта будет прекращена.'
 
     try:
         if os.path.exists(TARGET_FILE):

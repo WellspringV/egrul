@@ -89,7 +89,7 @@ class DownloadManager:
             else:
                 return            
         except Exception as ex:
-            logging.error(f"Ошибка чтения: {ex}. Попытка повторения...")
+            logging.error(f"Ошибка чтения: {ex}. Повтореная попытка ...")
             return
         
 

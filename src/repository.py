@@ -22,11 +22,11 @@ db = PostgresqlDatabase(**credentials)
 
 
 @contextmanager
-def DatabaseContextManager(session: PostgresqlDatabase):
+def DatabaseContextManager(database: PostgresqlDatabase):
     try:
-        yield session
+        yield database
     finally:
-        session.close()
+        database.close()
 
 
 class UL(Model):
@@ -63,8 +63,17 @@ class EGRRepository:
 
 
 
+def check_con(db):
+    try:
+        db.connect()
+    except Exception:        
+        logger.error('Не удалось подключиться к БД. Работа скрипта будет завершена.')
+        return False
+    else:
+        return True
+    
 
-def load(data: list):
+def load(db, data):
     with DatabaseContextManager(db) as db_context:
         repository = EGRRepository(db_context)
         repository.create_tables([UL])
@@ -72,4 +81,4 @@ def load(data: list):
 
 
 if __name__ == "__main__":
-    pass
+    check_con(db)
