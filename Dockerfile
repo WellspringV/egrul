@@ -10,4 +10,4 @@ WORKDIR /app
 
 COPY ./ /app
 
-ENTRYPOINT ["python", "main.py"]
+ENTRYPOINT ["python", "src/main.py"]

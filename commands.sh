@@ -1,6 +1,7 @@
 docker network create back_net
 docker volume create postgres_volume
 
+
 docker run --rm -d \
   --name database \
   --net=back_net \
@@ -11,7 +12,8 @@ docker run --rm -d \
   postgres:14
 
 
-docker run --rm -d \
+docker run --rm \
+  -it \
   --name back \
   --net=back_net \
   -p 8000:8000 \
@@ -19,5 +21,4 @@ docker run --rm -d \
   -e DB_USER=postgres \
   -e DB_PASS=123 \
   -e DB_NAME=postgres \
-  custom_cli:1
-
+  egrul:2
