@@ -1,7 +1,7 @@
 import sys
 import os
 import zipfile
-import time
+
 
 from repository import load
 from downloader import download_data, DownloadManager
@@ -38,17 +38,16 @@ def read_and_drop(json_gen, filters):
 
 
 def interactive(question: str) -> bool:
-    ask = input(f"{question}\n")
-    countdown = 60
-    while (ask not in ("Yes", "No")) and countdown > 0:
-        ask = input("Введите Yes или No\n").strip().lower()
-        if ask == "Yes":
-            return True
-        elif ask == "No":
-            return False
-        time.sleep(0.5)
-        countdown -= 1
-    return False
+    ask = input(f"{question}\n").strip()
+    
+    while ask not in ("Yes", "No"):
+        ask = input("Введите Yes или No\n")
+    
+    if ask == "Yes":
+        return True
+    elif ask == "No":
+        return False
+    
 
 
 def download_solition(solution: bool, url: str) -> None:
@@ -82,6 +81,7 @@ def main():
                 solution = interactive(
                     "Размер файла не соответствует ожидаемому, требуется перезаписать? (Yes/No)"
                 )
+                
                 download_solition(solution, URL)
             else:
                 solution = interactive(

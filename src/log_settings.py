@@ -54,7 +54,7 @@ logger_config = {
         },
         'file': {
             'class': 'logging.FileHandler',
-            'filename': 'mylog.log',
+            'filename': 'src/logs/debug.log',
             'level': 'DEBUG',
             'formatter': 'debug_format',
             'filters': ['debug_filter']
@@ -71,7 +71,7 @@ logger_config = {
     'loggers': {
         'app_logger': {
             'level': 'DEBUG',
-            'handlers': [ 'file', 'custom'], 
+            'handlers': ['custom'], 
             'propagate': False
         }
     },

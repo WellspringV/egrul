@@ -83,7 +83,7 @@ class DownloadManager:
         try:
             rs = self.session.get(url=url, headers=headers, stream=True, timeout=timeout)
             if 200 <= rs.status_code <= 299:                
-                with open(f'tmp/{output}', 'wb') as file:
+                with open(f'src/tmp/{output}', 'wb') as file:
                     for part in rs.iter_content(1024):
                         file.write(part)
             else:
@@ -116,12 +116,13 @@ class DownloadManager:
 def download_data(url):
     download_manager = DownloadManager(url)
     chunks, name = download_manager.thread_run(10)
+    
 
     with open(name, "wb") as file:
         for i in range(chunks):
-            with open(f'tmp/{Path(url).name}.{i}', 'rb') as ch:
+            with open(f'src/tmp/{Path(url).name}.{i}', 'rb') as ch:
                 file.write(ch.read())
-            Path(f'tmp/{Path(url).name}.{i}').unlink()
+            Path(f'src/tmp/{Path(url).name}.{i}').unlink()
 
 
 if __name__ == "__main__":
