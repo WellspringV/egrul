@@ -71,11 +71,3 @@ select id, ogrn, inn, kpp from ul order by id limit 5;
 ![image](https://github.com/WellspringV/egrul/assets/58819893/c531107b-947e-4e0e-9c02-1f00f7e341a4)
 
 
-## Использованные библиотеки
-- Requests
-- json
-- Concurrent.futures
-- Os
-- Urllib
-- re
-- Logging
